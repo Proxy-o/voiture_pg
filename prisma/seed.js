@@ -43,6 +43,21 @@ async function main() {
       },
     },
   });
+  // create normal user
+  const hashedPassword2 = await new Argon2id().hash("user123");
+  await prisma.user.create({
+    data: {
+      username: "user",
+      email: "user@gmail.com",
+      is_admin: false,
+      password: hashedPassword2,
+      compagny: {
+        connect: {
+          id: 1,
+        },
+      },
+    },
+  });
   await prisma.car.create({
     data: {
       chassis_number: "123ABC456DEF",

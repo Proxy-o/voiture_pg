@@ -7,6 +7,7 @@ import {
   FormLabel,
   FormControl,
   FormDescription,
+  FormMessage,
 } from "~/components/ui/form"; // replace with your actual import
 import { Input } from "~/components/ui/input";
 
@@ -35,6 +36,7 @@ const CustomField: React.FC<FieldProps> = ({
           <Input placeholder={placeholder} {...field} />
         </FormControl>
         {description && <FormDescription>{description}</FormDescription>}
+        <FormMessage />
       </FormItem>
     )}
   />
