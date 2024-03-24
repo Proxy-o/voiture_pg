@@ -36,14 +36,14 @@
     "add_client": "Ajouter  client",
     "add_car": "Ajouter véhicules",
     "add_invoice": "Créer  facture",
-    "invoice_list": "Liste de factures",
+    "invoice_list": "Factures",
     "update_user": "Mettre à jour",
     "save": "Enregistrer",
     "select_langue": "Sélectionner une langue",
     "select_mode": "Sélectionner un mode",
-    "client_list": "Liste de clients",
-    "car_list": "Liste de véhicules",
-    "dashboard": "Tableau de bord",
+    "client_list": "Clients",
+    "car_list": "Véhicules",
+    "dashboard": "Accueil",
     "is_admin": "Administrateur ?",
     "create_company": "Créer entreprise",
     "client_num": "Numéro de client",
@@ -66,7 +66,9 @@
     "create_client": "Créer un client",
     "select_client": "Sélectionner un client",
     "no_client_yet": "Pas encore de client",
-    "client_info": "Informations client"
+    "client_info": "Informations client",
+    "client_list": "Liste de clients",
+    "search": "Rechercher"
   },
   "Car": {
     "car": "VÉHICULES",
@@ -90,7 +92,8 @@
     "create_car": "Créer une véhicules",
     "select_car": "Sélectionner une véhicules",
     "no_car_yet": "Pas encore de véhicules",
-    "car_info": "Informations véhicules"
+    "car_info": "Informations véhicules",
+    "add_car": "Ajouter véhicule"
   },
   "Invoice": {
     "date": "Date",
@@ -112,7 +115,8 @@
     "paid": "Payé",
     "list_of_invoices": "Liste de factures",
     "invoice_number": "Numéro de facture",
-    "action": "Action"
+    "action": "Action",
+    "add_invoice": "Ajouter facture"
   },
   "Messages":{
     "company_created": "Entreprise créée avec succès",

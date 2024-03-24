@@ -36,13 +36,13 @@
     "add_client": "Add client",
     "add_car": "Add car",
     "add_invoice": "Create invoice",
-    "invoice_list": "Invoice list",
+    "invoice_list": "Invoices",
     "update_user": "Update",
     "save": "Save",
     "select_langue": "Select a language",
     "select_mode": "Select a mode",
-    "client_list": "Client list",
-    "car_list": "Car list",
+    "client_list": "Clients",
+    "car_list": "Cars",
     "dashboard": "Dashboard",
     "is_admin": "Is admin",
     "create_company": "Create company",
@@ -66,7 +66,9 @@
     "create_client": "Create client",
     "select_client": "Select client",
     "no_client_yet": "No client yet",
-    "client_info": "Client information"
+    "client_info": "Client information",
+    "client_list": "Client list",
+    "search": "Search"
   },
   "Car": {
     "car": "Car",
@@ -90,7 +92,8 @@
     "create_car": "Create car",
     "select_car": "Select car",
     "no_car_yet": "No car yet",
-    "car_info": "Car information"
+    "car_info": "Car information",
+    "add_car": "Add car"
   },
   "Invoice": {
     "date": "Date",
@@ -112,7 +115,8 @@
     "paid": "Paid",
     "list_of_invoices": "List of invoices",
     "invoice_number": "Invoice number",
-    "action": "Action"
+    "action": "Action",
+    "add_invoice": "Add invoice"
 
   }
   ,

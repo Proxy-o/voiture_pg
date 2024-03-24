@@ -37,4 +37,27 @@ export const clientRouter = createTRPCRouter({
         },
       });
     }),
+
+  searchClients: protectedProcedure
+    .input(z.string())
+    .mutation(async ({ input, ctx }) => {
+      return ctx.db.client.findMany({
+        where: {
+          OR: [
+            {
+              firstname: {
+                contains: input,
+                mode: "insensitive",
+              },
+            },
+            {
+              surname: {
+                contains: input,
+                mode: "insensitive",
+              },
+            },
+          ],
+        },
+      });
+    }),
 });

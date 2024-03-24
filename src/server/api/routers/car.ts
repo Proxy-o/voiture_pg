@@ -42,4 +42,33 @@ export const carRouter = createTRPCRouter({
         },
       });
     }),
+
+  searchCars: protectedProcedure
+    .input(z.string())
+    .mutation(async ({ input, ctx }) => {
+      return ctx.db.car.findMany({
+        where: {
+          OR: [
+            {
+              brand: {
+                contains: input,
+                mode: "insensitive",
+              },
+            },
+            {
+              model: {
+                contains: input,
+                mode: "insensitive",
+              },
+            },
+            {
+              chassis_number: {
+                contains: input,
+                mode: "insensitive",
+              },
+            },
+          ],
+        },
+      });
+    }),
 });

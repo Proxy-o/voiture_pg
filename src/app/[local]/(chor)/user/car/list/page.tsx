@@ -7,6 +7,9 @@ import type { Car, Client } from "../../../types";
 import { UserContext } from "../../_context/userContext";
 import CarView from "../../components/carView";
 import SelectCar from "../../components/selectCar";
+import Link from "next/link";
+import { CarFront } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function Page() {
   const { session, user } = useSession();
@@ -26,7 +29,9 @@ export default function Page() {
   const [selectedClient, setSelectedClient] = useState<Client>();
   const [isCarOpen, setIsCarOpen] = useState(false);
   const [selectedCar, setSelectedCar] = useState<Car>();
-  console.log(company);
+
+  const c = useTranslations("Car");
+
   return (
     <UserContext.Provider
       value={{
@@ -40,7 +45,14 @@ export default function Page() {
         setSelectedClient,
       }}
     >
-      <div className="w-full  p-2">
+      <div className="item-end  flex w-full flex-col items-end justify-end space-y-4 p-2">
+        <Link
+          href="/user/client"
+          className="relative flex w-fit items-center justify-center border bg-primary/50 p-4 hover:bg-primary"
+        >
+          <CarFront className=" " />
+          <div className="ml-2 w-full">{c("add_car")}</div>
+        </Link>
         {isSuccess && company && (
           <SelectCar company_id={company.compagny.id.toString()} />
         )}

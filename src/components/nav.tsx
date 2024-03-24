@@ -40,25 +40,6 @@ export default function Nav() {
     },
 
     {
-      title: u("add_client"),
-      link: "/user/client",
-      icon: UserRoundPlus,
-      variant: "ghost",
-    },
-    {
-      title: u("add_car"),
-      link: "/user/car",
-      icon: Car,
-      variant: "ghost",
-    },
-    {
-      title: u("add_invoice"),
-      link: "/user/invoice",
-      icon: FileText,
-      variant: "ghost",
-    },
-
-    {
       title: u("invoice_list"),
       link: "/user/invoice/all",
       icon: Archive,

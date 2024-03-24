@@ -30,7 +30,7 @@ export default function SelectCar({ company_id }: { company_id: string }) {
   };
 
   return (
-    <div className="flex ">
+    <div className="flex w-full">
       <div className="flex-1">
         {cars && cars.length > 0 ? (
           <div className="flex">
@@ -51,9 +51,6 @@ export default function SelectCar({ company_id }: { company_id: string }) {
                 ))}
               </SelectContent>
             </Select>
-            <Link href="/user/car " className="p-2 hover:bg-secondary ">
-              <PlusIcon />
-            </Link>
           </div>
         ) : (
           <p>{t("no_car_yet")}</p>
