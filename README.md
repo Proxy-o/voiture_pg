@@ -42,8 +42,8 @@ This is an admin dashboard that allows the creation and management of companies,
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/yourproject.git
-   cd yourproject
+   git clone https://github.com/Proxy-o/voiture_pg.git
+   cd voiture_pg
    ```
 
 2. Install dependencies:
@@ -56,6 +56,10 @@ This is an admin dashboard that allows the creation and management of companies,
    DATABASE_URL="your-database-url"
    NEXTAUTH_SECRET="your-secret"
    ```
+ > **Note:**  
+To use sqlite : 
+    DATABASE_URL = 'file:database.db'
+
 
 4. Initialize the database and seed it with initial data:
    ```bash
