@@ -18,9 +18,22 @@ import { createClientSchema } from "~/server/api/types";
 import CustomField from "../../admin/components/customFiled";
 import { useTranslations } from "next-intl";
 import { Checkbox } from "~/components/ui/checkbox";
-import { Card } from "~/components/ui/card";
-import { cn } from "~/lib/utils";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { toast } from "sonner";
+import {
+  Building2,
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  User,
+  Building,
+  Hash,
+  Globe,
+  HomeIcon,
+  MapPinned,
+  Smartphone,
+} from "lucide-react";
 
 export default function CreateClientForm({
   company_id,
@@ -69,121 +82,221 @@ export default function CreateClientForm({
   }
 
   return (
-    <>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className=" flex h-full flex-col p-2"
-        >
-          <h1 className="text-2xl font-bold">{t("create_client")}</h1>
-          <div className="  flex-1 space-y-2 p-2 ">
-            <Card className="grid grid-cols-2 gap-2 p-2 shadow-md">
-              <FormField
-                control={form.control}
-                name={"is_company"}
-                render={({ field }) => (
-                  <FormItem className="mt-8 flex w-full items-center  justify-start ">
-                    <FormLabel
-                      className={cn(
-                        "relative w-full rounded-lg border  p-3",
-                        field.value && "bg-secondary",
-                      )}
-                    >
-                      {t("is_company")}
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <User className="h-5 w-5" />
+          {t("create_client")}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-6"
+          >
+            {/* Client Type & Basic Info */}
+            <Card className="shadow-sm">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Building2 className="h-4 w-4" />
+                  Basic Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="is_company"
+                  render={({ field }) => (
+                    <FormItem className="flex items-center space-x-2">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
                           onCheckedChange={field.onChange}
-                          className="absolute bottom-2 right-1 z-50 size-6"
                         />
                       </FormControl>
-                    </FormLabel>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <CustomField
-                label={t("surname")}
-                name="surname"
-                control={form.control}
-                placeholder={t("surname")}
-              />
-              <CustomField
-                label={t("first_name")}
-                name="firstname"
-                control={form.control}
-                placeholder={t("first_name")}
-              />
-              <CustomField
-                label={t("company_name")}
-                name="company_name"
-                control={form.control}
-                placeholder={t("company_name")}
-              />
-            </Card>
-            <Card className="p-2 shadow-md">
-              <CustomField
-                label={t("btw_number")}
-                name="btw_number"
-                control={form.control}
-                placeholder={t("btw_number")}
-              />
-            </Card>
-            <Card className="grid grid-cols-2 gap-2 p-2 shadow-md">
-              <CustomField
-                label={t("street")}
-                name="street"
-                control={form.control}
-                placeholder={t("street")}
-              />
-              <CustomField
-                label={t("postal_code")}
-                name="postal_code"
-                control={form.control}
-                placeholder={t("postal_code")}
-              />
-              <CustomField
-                label={t("city")}
-                name="city"
-                control={form.control}
-                placeholder={t("city")}
-              />
-              <CustomField
-                label={t("country")}
-                name="country"
-                control={form.control}
-                placeholder={t("country")}
-              />
-            </Card>
-            <Card className="grid grid-cols-2 gap-2 p-2 shadow-md">
-              <div className="col-span-2">
-                <CustomField
-                  label={t("email")}
-                  name="email"
-                  control={form.control}
-                  placeholder={t("email")}
+                      <FormLabel className="font-medium">
+                        {t("is_company")}
+                      </FormLabel>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              <CustomField
-                label={t("phone")}
-                name="phone_number"
-                control={form.control}
-                placeholder={t("phone")}
-              />
-              <CustomField
-                label={t("mobile")}
-                name="mobile_number"
-                control={form.control}
-                placeholder={t("mobile")}
-              />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:col-span-2">
+                  <CustomField
+                    label={
+                      <span className="flex items-center gap-2">
+                        <User className="h-4 w-4" />
+                        {t("surname")}
+                      </span>
+                    }
+                    name="surname"
+                    control={form.control}
+                    placeholder={t("surname")}
+                  />
+                  <CustomField
+                    label={
+                      <span className="flex items-center gap-2">
+                        <User className="h-4 w-4" />
+                        {t("first_name")}
+                      </span>
+                    }
+                    name="firstname"
+                    control={form.control}
+                    placeholder={t("first_name")}
+                  />
+                  <div className="md:col-span-2">
+                    <CustomField
+                      label={
+                        <span className="flex items-center gap-2">
+                          <Building className="h-4 w-4" />
+                          {t("company_name")}
+                        </span>
+                      }
+                      name="company_name"
+                      control={form.control}
+                      placeholder={t("company_name")}
+                    />
+                  </div>
+                </div>
+              </CardContent>
             </Card>
-          </div>
-          <Button type="submit" className="w-full">
-            {t("create_client")}
-          </Button>
-        </form>
-      </Form>
-    </>
+
+            {/* Tax Information */}
+            <Card className="shadow-sm">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Hash className="h-4 w-4" />
+                  {t("tax_information")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CustomField
+                  label={
+                    <span className="flex items-center gap-2">
+                      <Hash className="h-4 w-4" />
+                      {t("btw_number")}
+                    </span>
+                  }
+                  name="btw_number"
+                  control={form.control}
+                  placeholder={t("btw_number")}
+                />
+              </CardContent>
+            </Card>
+
+            {/* Address Information */}
+            <Card className="shadow-sm">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <MapPin className="h-4 w-4" />
+                  {t("address")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="md:col-span-2">
+                  <CustomField
+                    label={
+                      <span className="flex items-center gap-2">
+                        <HomeIcon className="h-4 w-4" />
+                        {t("street")}
+                      </span>
+                    }
+                    name="street"
+                    control={form.control}
+                    placeholder={t("street")}
+                  />
+                </div>
+                <CustomField
+                  label={
+                    <span className="flex items-center gap-2">
+                      <MapPinned className="h-4 w-4" />
+                      {t("postal_code")}
+                    </span>
+                  }
+                  name="postal_code"
+                  control={form.control}
+                  placeholder={t("postal_code")}
+                />
+                <CustomField
+                  label={
+                    <span className="flex items-center gap-2">
+                      <Building2 className="h-4 w-4" />
+                      {t("city")}
+                    </span>
+                  }
+                  name="city"
+                  control={form.control}
+                  placeholder={t("city")}
+                />
+                <CustomField
+                  label={
+                    <span className="flex items-center gap-2">
+                      <Globe className="h-4 w-4" />
+                      {t("country")}
+                    </span>
+                  }
+                  name="country"
+                  control={form.control}
+                  placeholder={t("country")}
+                />
+              </CardContent>
+            </Card>
+
+            {/* Contact Information */}
+            <Card className="shadow-sm">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Phone className="h-4 w-4" />
+                  {t("contact")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="md:col-span-2">
+                  <CustomField
+                    label={
+                      <span className="flex items-center gap-2">
+                        <Mail className="h-4 w-4" />
+                        {t("email")}
+                      </span>
+                    }
+                    name="email"
+                    control={form.control}
+                    placeholder={t("email")}
+                  />
+                </div>
+                <CustomField
+                  label={
+                    <span className="flex items-center gap-2">
+                      <Phone className="h-4 w-4" />
+                      {t("phone")}
+                    </span>
+                  }
+                  name="phone_number"
+                  control={form.control}
+                  placeholder={t("phone")}
+                />
+                <CustomField
+                  label={
+                    <span className="flex items-center gap-2">
+                      <Smartphone className="h-4 w-4" />
+                      {t("mobile")}
+                    </span>
+                  }
+                  name="mobile_number"
+                  control={form.control}
+                  placeholder={t("mobile")}
+                />
+              </CardContent>
+            </Card>
+
+            <Button type="submit" className="w-full">
+              <Send className="h-4 w-4 mr-2" />
+              {t("create_client")}
+            </Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
   );
 }

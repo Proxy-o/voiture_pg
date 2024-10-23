@@ -22,6 +22,7 @@ import SelectCompany from "./selectCompany";
 import { Checkbox } from "~/components/ui/checkbox";
 import { cn } from "~/lib/utils";
 import { toast } from "sonner";
+import { Card } from "~/components/ui/card";
 
 export default function CreateUserForm() {
   const t = useTranslations("User");
@@ -64,6 +65,7 @@ export default function CreateUserForm() {
     );
   }
   return (
+    <Card className="p-8">
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <SelectCompany setCompanyId={setCompanyId} />
@@ -136,7 +138,7 @@ export default function CreateUserForm() {
                   <Checkbox
                     checked={field.value}
                     onCheckedChange={field.onChange}
-                    className="  absolute bottom-2 right-1 z-50 size-6"
+                    className="  absolute bottom-[7px] rounded-md right-2 z-50 size-6"
                   />
                 </FormControl>
               </FormLabel>
@@ -150,5 +152,6 @@ export default function CreateUserForm() {
         </Button>
       </form>
     </Form>
+    </Card>
   );
 }

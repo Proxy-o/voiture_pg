@@ -14,6 +14,7 @@ import {
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { EyeIcon, Pen } from "lucide-react";
+import { buttonVariants } from "~/components/ui/button";
 
 export default async function Page() {
   const { session, user } = await validateRequest();
@@ -30,7 +31,16 @@ export default async function Page() {
   );
   return (
     <div className="flex flex-col items-end justify-end space-y-2 p-2">
-
+      <Link
+        href="/user/invoice"
+        className={buttonVariants({
+          variant: "default",
+          size: "default",
+        }) + " flex items-center"}
+      >
+        <Pen className=" " />
+        <div className="ml-2 w-full text-sm">{i("add_invoice")}</div>
+      </Link>
       <Table className="h-full border">
         <TableCaption>{i("list_of_invoices")}</TableCaption>
         <TableHeader>

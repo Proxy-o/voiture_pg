@@ -7,6 +7,7 @@ import Invoices from "src/app/[local]/(chor)/user/invoice/all/page";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
+import { buttonVariants } from "~/components/ui/button";
 
 export default async function Page() {
   const { session, user } = await validateRequest();
@@ -80,13 +81,19 @@ export default async function Page() {
         />
       </div>
       
-      <div className="flex-1">
+      <div className="">
         <Invoices />
       </div>
 
       <Link
         href="/user/invoice"
-        className="flex items-center justify-center gap-2 rounded-md bg-primary/80 p-3 font-medium text-primary-foreground transition-colors hover:bg-primary/70"
+        className={buttonVariants({
+          variant: "default",
+          size: "default",
+        }) + " flex items-center"
+
+
+        }
       >
         <FileText className="h-5 w-5" />
         {t("add_invoice")}
