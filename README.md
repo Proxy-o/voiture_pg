@@ -1,57 +1,149 @@
-## Installation Instructions
 
-To set up the Project locally, follow these steps:
+# Company Management and Car Inventory System
 
-Clone the Repository:
+> **Note:**  
+> After seeding the database, the following users will be created so you can login:
+> 
+> - **Admin Account**  
+>   Username: **admin**  
+>   Password: **admin123**
+> 
+> - **User Account**  
+>   Username: **user**  
+>   Password: **user123**
 
-```bash
-git clone https://github.com/Proxy-o/voiture.git
-```
+This is an admin dashboard that allows the creation and management of companies, users, and car inventory. Users can log in to view the cars associated with their company, add new cars, manage clients, and generate invoices for clients.
 
-Enter the folder
+## Features
 
-```bash
-cd voiture
-```
+- **Admin Dashboard**: Admins can create and manage companies and users.
+- **User Authentication**: Users associated with a company can log in to access their company’s cars and clients.
+- **Car Management**: Users can view, add, and update cars within their company's inventory.
+- **Client Management**: Users can create and manage clients.
+- **Invoice Generation**: Users can create invoices for clients based on car-related services or other transactions.
 
-Install node dependencies:
+## Tech Stack
 
-```bash
-npm i
-```
+- **Next.js**: Frontend framework for building the user interface.
+- **Prisma**: Database ORM for managing and interacting with the database.
+- **Shadcn**: For UI components.
+- **Lucia-auth**: Authentication system for handling user login and sessions.
+- **Zod**: Validation library to ensure the integrity of user input.
+- **React Hook Form**: For managing form inputs and validation.
 
-# note :
+## Getting Started
 
-if you have <strong>DOCKER</strong> just run the following command to start a mysql container
+### Prerequisites
 
-```bash
-./start-mysqlDatabase.sh
-```
+- Node.js (v16 or higher)
+- SQLite (or other Prisma-supported database)
 
-If NOT replace the DATABASE_URL with your mysql database url in the .env file
+### Installation
 
-and then run :
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/yourproject.git
+   cd yourproject
+   ```
 
-```bash
-npx prisma migrate dev --name init
-```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-seed some data to log in
+3. Set up environment variables. Create a `.env` file in the root directory and configure the following:
+   ```bash
+   DATABASE_URL="your-database-url"
+   NEXTAUTH_SECRET="your-secret"
+   ```
 
-```bash
-npm run db:seed
-```
+4. Initialize the database and seed it with initial data:
+   ```bash
+   make setup
+   ```
 
-Run the app
+   > **IMPORTANT: Seeded User Accounts**
+   > 
+   > The following users will be created after running the seed:
+   > 
+   > - **Admin Account**  
+   >   Username: **admin**  
+   >   Password: **admin123**
+   > 
+   > - **User Account**  
+   >   Username: **user**  
+   >   Password: **user123**
 
-```bash
-npm run build && npm run start
-```
+5. Start the development server:
+   ```bash
+   make dev
+   ```
 
-Open your prefered browser and Enter :
-http://localhost:3000
+### Scripts
 
-you can login with
+You can use the `Makefile` to manage common project tasks:
 
-<h1>admin</h1>
-<h1>admin123</h1>
+- **Setup**: Initialize and seed the database
+  ```bash
+  make setup
+  ```
+
+- **Build**: Build the Next.js application
+  ```bash
+  make build
+  ```
+
+- **Development Server**: Start the app in development mode
+  ```bash
+  make dev
+  ```
+
+- **Seed Database**: Populate the database with seed data
+  ```bash
+  make seed
+  ```
+
+- **Prisma Studio**: Access the Prisma Studio to manage the database
+  ```bash
+  make studio
+  ```
+
+- **Database Refresh**: Reset and push the latest database schema
+  ```bash
+  make refresh
+  ```
+
+- **Start Production Server**: Start the application in production mode
+  ```bash
+  make start
+  ```
+
+- **Lint**: Run the linter to check for code issues
+  ```bash
+  make lint
+  ```
+
+### Authentication
+
+The app uses **Lucia-auth** for managing user authentication. Users must log in to access the dashboard and manage company-specific data.
+
+### Database
+
+Prisma ORM is used for database management. The database schema includes models for:
+
+- **Company**
+- **User**
+- **Car**
+- **Client**
+- **Invoice**
+
+The project uses SQLite by default, but can be easily configured to use other databases supported by Prisma.
+
+### Form Validation
+
+All forms use **React Hook Form** along with **Zod** for input validation, ensuring data integrity and a smooth user experience.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
