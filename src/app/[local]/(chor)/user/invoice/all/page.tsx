@@ -30,13 +30,7 @@ export default async function Page() {
   );
   return (
     <div className="flex flex-col items-end justify-end space-y-2 p-2">
-      <Link
-        href="/user/invoice"
-        className="relative flex w-fit items-center justify-center border bg-primary/50 p-4 hover:bg-primary"
-      >
-        <Pen className=" " />
-        <div className="ml-2 w-full text-sm">{i("add_invoice")}</div>
-      </Link>
+
       <Table className="h-full border">
         <TableCaption>{i("list_of_invoices")}</TableCaption>
         <TableHeader>

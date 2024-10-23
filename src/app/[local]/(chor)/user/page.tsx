@@ -1,70 +1,96 @@
-import { PlusIcon } from "lucide-react";
+import { Car, Users, FileText, Plus } from "lucide-react";
 import { redirect } from "next/navigation";
 import React from "react";
-import { Card } from "~/components/ui/card";
 import { validateRequest } from "~/server/lucia/validateRequests";
 import { api } from "~/trpc/server";
 import Invoices from "src/app/[local]/(chor)/user/invoice/all/page";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 
 export default async function Page() {
   const { session, user } = await validateRequest();
   const t = await getTranslations("User");
+
   if (!session || !user) {
     redirect("/login");
   }
+
   const company = await api.user.getUserCompany.query(parseInt(user.id));
+  
   if (!company) {
     redirect("/login");
   }
-  const cars = await api.car.getCompanyCars.query(
-    parseInt(company.compagny.id.toString()),
-  );
-  const client = await api.client.getCompanyClients.query(
-    parseInt(company.compagny.id.toString()),
+
+  const companyId = parseInt(company.compagny.id.toString());
+  const cars = await api.car.getCompanyCars.query(companyId);
+  const clients = await api.client.getCompanyClients.query(companyId);
+
+  const DashboardCard = ({ 
+    title, 
+    count, 
+    href, 
+    addText, 
+    icon: Icon 
+  }: { 
+    title: string; 
+    count: number; 
+    href: string; 
+    addText: string; 
+    icon: React.ComponentType<any>; 
+  }) => (
+    <Card className="flex-1">
+      <CardHeader className="pb-2">
+        <CardTitle className="flex items-center gap-2 text-lg font-medium">
+          <Icon className="h-5 w-5" />
+          {title}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="pb-2">
+        <p className="text-center text-6xl font-bold">{count}</p>
+      </CardContent>
+      <CardFooter>
+        <Link
+          href={href}
+          className="flex w-full items-center justify-center gap-2 rounded-md bg-secondary p-2 transition-colors hover:bg-secondary/80"
+        >
+          {addText}
+          <Plus className="h-4 w-4" />
+        </Link>
+      </CardFooter>
+    </Card>
   );
 
-  //   show number of cars and clients in Card and a button to add new car or client
   return (
-    <div className="flex h-full w-full flex-col gap-2 p-2">
-      <div className="flex min-h-64 w-full gap-2">
-        <Card className="flex size-full flex-col items-center justify-center bg-primary/60 p-4 ">
-          <p>{t("car_num")}</p>
-          <div className="flex flex-1 items-center text-6xl font-bold">
-            {cars.length}
-          </div>
-          <Link
-            href="/user/car "
-            className="flex w-full justify-center bg-secondary  p-2 hover:bg-secondary/50"
-          >
-            {t("add_car")}
-            <PlusIcon className="ml-2" />
-          </Link>
-        </Card>
-        <Card className="flex size-full  flex-col items-center justify-center bg-primary/60 p-4">
-          <p>{t("client_num")} </p>
-          <div className="flex flex-1 items-center text-6xl font-bold">
-            {client.length}
-          </div>
-          <Link
-            href="/user/client "
-            className="flex w-full justify-center bg-secondary  p-2 hover:bg-secondary/50"
-          >
-            {t("add_client")}
-            <PlusIcon className="ml-2" />
-          </Link>
-        </Card>
+    <div className="flex h-full w-full flex-col gap-4 p-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <DashboardCard
+          title={t("car_num")}
+          count={cars.length}
+          href="/user/car"
+          addText={t("add_car")}
+          icon={Car}
+        />
+        <DashboardCard
+          title={t("client_num")}
+          count={clients.length}
+          href="/user/client"
+          addText={t("add_client")}
+          icon={Users}
+        />
       </div>
-      <div className="h-full">
+      
+      <div className="flex-1">
         <Invoices />
       </div>
+
       <Link
-        href="/user/invoice "
-        className="flex w-full justify-center bg-primary/80  p-2  hover:bg-primary/50"
+        href="/user/invoice"
+        className="flex items-center justify-center gap-2 rounded-md bg-primary/80 p-3 font-medium text-primary-foreground transition-colors hover:bg-primary/70"
       >
+        <FileText className="h-5 w-5" />
         {t("add_invoice")}
-        <PlusIcon className="ml-2" />
+        <Plus className="h-4 w-4" />
       </Link>
     </div>
   );
