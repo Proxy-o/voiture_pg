@@ -89,7 +89,7 @@ async function login(_: unknown, formData: FormData): Promise<ActionResult> {
     };
   }
 
-  const session = await lucia.createSession(existingUser.id.toString(), {});
+  const session = await lucia.createSession(existingUser.id, {});
   const sessionCookie = lucia.createSessionCookie(session.id);
   cookies().set(
     sessionCookie.name,
