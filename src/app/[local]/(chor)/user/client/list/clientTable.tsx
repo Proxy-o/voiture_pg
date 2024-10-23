@@ -14,6 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
+import { buttonVariants } from "~/components/ui/button";
 import { api } from "~/trpc/react";
 
 export default function ClientTable({ company_id }: { company_id: string }) {
@@ -39,8 +40,12 @@ export default function ClientTable({ company_id }: { company_id: string }) {
   return (
     <div className="flex flex-col items-end justify-end space-y-1 ">
       <Link
+      
         href="/user/client"
-        className="relative flex w-fit items-center justify-center border bg-primary/50 p-4 hover:bg-primary"
+        className={buttonVariants({
+          variant: "default",
+          size: "default",
+        }) + " flex items-center"}
       >
         <UserRoundPlus className=" " />
         <div className="ml-2 w-full">{u("add_client")}</div>

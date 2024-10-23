@@ -10,6 +10,7 @@ import SelectCar from "../../components/selectCar";
 import Link from "next/link";
 import { CarFront } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { buttonVariants } from "~/components/ui/button";
 
 export default function Page() {
   const { session, user } = useSession();
@@ -48,7 +49,10 @@ export default function Page() {
       <div className="item-end  flex w-full flex-col items-end justify-end space-y-4 p-2">
         <Link
           href="/user/client"
-          className="relative flex w-fit items-center justify-center border bg-primary/50 p-4 hover:bg-primary"
+          className={buttonVariants({
+            variant: "default",
+            size: "default",
+          }) + " flex items-center"}
         >
           <CarFront className=" " />
           <div className="ml-2 w-full">{c("add_car")}</div>
